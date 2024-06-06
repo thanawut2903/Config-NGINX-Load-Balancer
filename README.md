@@ -31,3 +31,31 @@
 
 6.curl http://(ip address)
 
+#Generic hash
+
+    upstream myserver {
+
+      server (ip address) ;
+
+      server (ip address) ;
+
+      server (ip address) ;
+      hash $request_uri;
+
+    }
+
+    server{
+
+      location / {
+
+      proxy_pass http://myserver;
+
+      }
+
+    }
+
+nginx -s reload
+curl http://(ip address)
+
+
+
